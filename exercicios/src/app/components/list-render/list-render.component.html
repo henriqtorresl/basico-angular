@@ -1,0 +1,13 @@
+<div class="class">
+    <h2>Animais:</h2>
+    <!--Usando o for:-->
+    <ul>
+        <!--Percorrendo a lista animals (é um atributo da classe ListRenderComponent)-->
+        <li *ngFor="let animal of animals">
+            Nome: {{animal.name}} - Especie: {{animal.type}}
+            <button (click)="showAge(animal)">Show age</button>
+        </li>
+    </ul>
+    <!--Caso nenhum botão seja apertado não vai ser mostrado nada na tela, pois animalDetails tem como valor padrão, uma string vazia-->
+    <h3>{{ animalDetails }}</h3>
+</div>

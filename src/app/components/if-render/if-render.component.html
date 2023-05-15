@@ -1,0 +1,12 @@
+<div class="class">
+    <!--Se o canShow for true, o conteúdo da div vai ser mostrado, se for falso, não vai-->
+    <div *ngIf="canShow">Estamos mostrando isso porque foi permitido</div>
+
+    <!--Se o parametro name for estritamente igual a "Henrique, mostre o conteúdo de h2"-->
+    <!--Usando o else:-->
+    <h2 *ngIf="name === 'Henrique'; else nameNotFound">O nome é Henrique</h2>
+    <!--o ng-template só vai mostrar seu conteúdo caso o else seja verdadeiro-->
+    <ng-template #nameNotFound>
+        <h2>O nome não foi encontrado!q</h2>
+    </ng-template>
+</div>
