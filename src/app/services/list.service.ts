@@ -4,19 +4,29 @@ import { Injectable } from '@angular/core';
 
 import { Animal } from '../Animal';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ListService {
 
-  constructor() { }
+  private apiUrl = "http://localhost:3000/animals";
+
+  constructor(private http: HttpClient) { }
 
   // boa prática: como esse método faz relação com o método removeAnimal() da classe ListRender, eu coloco nome parecido entre os métodos
   remove(animals: Animal[], animal: Animal) {
     return animals.filter((a) => animal.name !== a.name);
   }
 
-  add(animals: Animal[], animal: Animal) {
-    animals.push(animal);
+  getAll(): Observable<Animal[]> {    // esse método vai preencher uma lista de Animal
+    return this.http.get<Animal[]>(this.apiUrl);
+  }
+
+  getItem(id: number): Observable<Animal> {
+    return this.http.get<Animal>(`${this.apiUrl}/${id}`); // pegando o id do parâmetro e jogando na minha url
   }
 }

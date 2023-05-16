@@ -13,28 +13,23 @@ export class ListRenderComponent {
 
   animalDetails: string = "";  // iniciado como uma string vazia para não mostrar nada na tela caso o botão não seja apertado
 
-  animals: Animal[] = [   // array de objetos (array de Animal)
-    {name: "Turca", type: "Dog", age: 4},
-    {name: "Tom", type: "Cat", age: 10},
-    {name: "Frida", type: "Dog", age: 5},
-    {name: "Bob", type: "Horse", age: 1},
-  ]
+  animals: Animal[] = [];   // array de objetos (array de Animal)
 
-  animal: Animal = {name: " ", type: " ", age: 0};
-
-   // dessa forma, o angular vai entender que eu estou criando um novo serviço e ele vem do ListService
-   constructor(private listService: ListService) {}  // para poder trabalhar cm o service nessa classe, eu preciso criar um objeto do service dentro do meu construtor..
+  // dessa forma, o angular vai entender que eu estou criando um novo serviço e ele vem do ListService
+  constructor(private listService: ListService) {  // para poder trabalhar cm o service nessa classe, eu preciso criar um objeto do service dentro do meu construtor..
+    this.getAnimals();    // assim que eu iniciar a minha classe listRender ele vai iniciar esse método getAnimals
+  }
 
   showAge(animal: Animal): void {
     // altera o valor do atributo animalDetails
     this.animalDetails = `O pet ${animal.name} tem ${animal.age} ano(s)!`;
   }
 
-  removeAnimal(animal: Animal) {   
+  removeAnimal(animal: Animal) {    
     this.animals = this.listService.remove(this.animals, animal);      // aqui nessa linha eu estou relacionando, fazendo o link do método do service com o método do componente
   }
 
-  addAnimal(animal: Animal) {
-    this.listService.add(this.animals, animal);
+  getAnimals(): void {    // o método getAnimals chama o método getAll do service listService
+    this.listService.getAll().subscribe((animals) => this.animals = animals);
   }
 }

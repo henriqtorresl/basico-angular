@@ -1,17 +1,24 @@
-<h1>Olá Mundo!</h1>
-<p>Alguma coisa</p>
+<p>header</p>
 
-<div>
-    <a href="#">Clique aqui</a>
-</div>
+<!--Fazendo a navegação das páginas, colocando as tags de list-->
+<nav>
+    <!--No angular não usa-se o parâmetro href e sim o routerLink-->
+    <a routerLink="/">Home</a>
+    <br>
+    <a routerLink="/list">Lista</a>
+    <br>
+    <a routerLink="/if-render">If-Render</a>
+    <br>
+    <a routerLink="/evento">Evento</a>
+    <br>
+    <a routerLink="/emitter">Change-Number</a>
+</nav>
 
-<!--Usando o componente que eu criei, aravés de seu seletor-->
-<app-first-component></app-first-component>
-<app-parent-data [name]="userName" [userData]="userData"></app-parent-data>
-<app-directives></app-directives>
-<app-if-render></app-if-render>
-<app-eventos></app-eventos>
-<app-emitter></app-emitter>
-<app-list-render></app-list-render>
-<app-pipes></app-pipes>
-<app-two-way-binding></app-two-way-binding>
+<h1>Hello world Angular!</h1>
+
+<!--Agora usando o router outlet eu divido meu projeto em paginas e não preciso mais ficar importando os seletores-->
+<router-outlet></router-outlet>
+
+<h3>Esse site é um SPA</h3>
+
+<p>footer</p>
