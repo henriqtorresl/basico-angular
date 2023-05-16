@@ -18,8 +18,9 @@ export class ListService {
   constructor(private http: HttpClient) { }
 
   // boa prática: como esse método faz relação com o método removeAnimal() da classe ListRender, eu coloco nome parecido entre os métodos
-  remove(animals: Animal[], animal: Animal) {
-    return animals.filter((a) => animal.name !== a.name);
+  remove(id: number) {
+    // no delete eu passo no generics < > o que eu quero deletar, e como parâmetro eu passo uma rota
+    return this.http.delete<Animal>(`${this.apiUrl}/${id}`);
   }
 
   getAll(): Observable<Animal[]> {    // esse método vai preencher uma lista de Animal

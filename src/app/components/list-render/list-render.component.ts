@@ -25,8 +25,11 @@ export class ListRenderComponent {
     this.animalDetails = `O pet ${animal.name} tem ${animal.age} ano(s)!`;
   }
 
-  removeAnimal(animal: Animal) {    
-    this.animals = this.listService.remove(this.animals, animal);      // aqui nessa linha eu estou relacionando, fazendo o link do método do service com o método do componente
+  removeAnimal(animal: Animal) {
+    this.animals = this.animals.filter((a) => animal.name !== a.name);   // aqui eu apenas removo o animal visualmente (inativo)
+    // exclusão do animal de fato:
+    this.listService.remove(animal.id).subscribe();   // relacionando o método remove animal com o método do service remove     
+    // sempre que eu interajo com o banco eu tenho que usar o método subscribe que é a maneira do angular dizer que o evento foi executado
   }
 
   getAnimals(): void {    // o método getAnimals chama o método getAll do service listService
