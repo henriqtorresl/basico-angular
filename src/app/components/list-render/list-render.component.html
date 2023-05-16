@@ -2,10 +2,31 @@
     <h2>Animais:</h2>
     <!--Usando o for:-->
     <ul>
+        <form>
+            <h3>Digite um nome para o animal:</h3>
+            <input type="text" [(ngModel)]="animal.name"
+            name="name">
+            <input type="submit" value="Enviar">
+            <br>
+            <h3>Digite a espécie do animal:</h3>
+            <input type="text" [(ngModel)]="animal.type"
+            name="type">
+            <input type="submit" value="Enviar">
+            <br>
+            <h3>Digite a idade do animal:</h3>
+            <input type="text" [(ngModel)]="animal.age"
+            name="age">
+            <input type="submit" value="Enviar">
+        </form>
+        <div *ngIf="animal.name !== ' ' && animal.type !== ' ' && animal.age != 0">
+            <button (click)="addAnimal(animal)">Adicionar animal!</button>
+        </div>
+
         <!--Percorrendo a lista animals (é um atributo da classe ListRenderComponent)-->
         <li *ngFor="let animal of animals">
             Nome: {{animal.name}} - Especie: {{animal.type}}
             <button (click)="showAge(animal)">Show age</button>
+            <button (click)="removeAnimal(animal)">Excluir</button>
         </li>
     </ul>
     <!--Caso nenhum botão seja apertado não vai ser mostrado nada na tela, pois animalDetails tem como valor padrão, uma string vazia-->
